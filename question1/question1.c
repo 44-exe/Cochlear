@@ -15,12 +15,13 @@ struct customer_meta
 typedef struct customer_meta customer_meta_t;
 
 
-//function protocol
+//function prototype
 void Main_Menu(int *option);
 void Add_Customer(void);
 void Print_All_Customers(void);
 void Transaction_Customer(int customer_id);
 void Calculate_Transaction(customer_meta_t *customer, int transaction);
+bool check_existing(int id);
 void Run_Test_Case(void);
 
 
@@ -64,8 +65,11 @@ void Add_Customer(void)
     return;
   }
 
-  printf("Enter ID (e.g. 1234): ");
-  scanf("%d", &tmp_id);
+  do
+  {
+    printf("Enter ID (e.g. 1234): ");
+    scanf("%d", &tmp_id);
+  } while (check_existing(tmp_id));
 
   printf("Enter tiers (e.g. g, s, b): ");
   scanf(" %c", &tmp_tiers);
@@ -175,6 +179,28 @@ void Calculate_Transaction(customer_meta_t *customer, int transaction)
   }
   customer->transaction += transaction;
   printf("Customer %d now has %d points\n", customer->id, customer->points);
+}
+
+/* 
+ * Brief: Checks for existing customer id
+ *
+ */
+bool check_existing(int id)
+{
+  if (Customer_Count == 0)
+  {
+    return false;
+  }
+
+  for (int i=0; i<Customer_Count; i++)
+  {
+    if (Customer[i].id == id)
+    {
+      printf("Error, customer ID already exists!\n");
+      return true;
+    }
+  }
+  return false;
 }
 
 /* 

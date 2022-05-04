@@ -1,5 +1,4 @@
 
-
 class Node:
     def __init__(self, data_val=None):
         self.data = data_val
@@ -92,5 +91,6 @@ if __name__=="__main__":
 
     print("")
     ll.print_list_reverse(ll.head)
+
 
 # End of File
