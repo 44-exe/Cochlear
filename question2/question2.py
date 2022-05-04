@@ -51,32 +51,47 @@ class LinkedList:
             count += 1
         return count
 
-    # method for printing list
+    # method for printing list in forward order
     def print_list(self):
         print_node = self.head
         while print_node is not None:
-            print(f"print_node.data: {print_node.data}")
+            print(f"print forward: {print_node.data}")
             print_node = print_node.next
 
+    # method for printing list in reverse order
+    def print_list_reverse(self, current_node):
+        if current_node is None:
+            return
+        self.print_list_reverse(current_node.next)
+        print(f"print reverse: {current_node.data}")
 
 
 if __name__=="__main__":
     print("running main")
     ll = LinkedList()
-    ll.insert_node(Node("Mon"))
-    ll.insert_node(Node("Tue"))
-    ll.insert_node(Node("Thu"))
+    ll.insert_node(Node(0))
+    ll.insert_node(Node(1))
+    ll.insert_node(Node(3))
+    ll.insert_node(Node(4))
     ll.print_list()
 
-    ll.delete_node(Node("Thu"))
-    print("Corrected")
-    ll.insert_node(Node("Wed"))
-    ll.insert_node(Node("Thu"))
+    ll.delete_node(Node(3))
+    ll.delete_node(Node(4))
+    print("Corrected by deleting 3 and 4")
+    ll.insert_node(Node(2))
+    ll.insert_node(Node(3))
+    ll.insert_node(Node(4))
+    ll.insert_node(Node(5))
+    ll.insert_node(Node(6))
+    ll.insert_node(Node(7))
+    ll.insert_node(Node(8))
+    ll.insert_node(Node(9))
     ll.print_list()
 
     print("")
-    ll.total_nodes()
+    print(f"total node count: {ll.total_nodes()}")
 
-
+    print("")
+    ll.print_list_reverse(ll.head)
 
 # End of File
