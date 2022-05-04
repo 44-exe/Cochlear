@@ -5,13 +5,14 @@
 
 #define MAX_CUSTOMER 5
 
+//structures
 struct customer_meta
 {
   int  id;
   char tiers;
   int  points;
   int  transaction;
-}; 
+};
 typedef struct customer_meta customer_meta_t;
 
 
@@ -29,9 +30,7 @@ void Run_Test_Case(void);
 int  Test_ID[]     = {1234, 2345, 3456, 4567, 5678};
 char Test_Tiers[]  = {'g', 's', 'b', 'g', 's'};
 int  Test_Points[] = {0, 0, 0, 0, 0};
-
 int Customer_Count = 0;
-
 customer_meta_t Customer[MAX_CUSTOMER];
 
 /* 
