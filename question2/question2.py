@@ -1,6 +1,4 @@
 
-from os import remove
-
 
 class Node:
     def __init__(self, data_val=None):
@@ -77,6 +75,7 @@ if __name__=="__main__":
 
     ll.delete_node(Node(3))
     ll.delete_node(Node(4))
+    print("")
     print("Corrected by deleting 3 and 4")
     ll.insert_node(Node(2))
     ll.insert_node(Node(3))
