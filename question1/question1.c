@@ -30,6 +30,7 @@ void Run_Test_Case(void);
 int  Test_ID[]     = {1234, 2345, 3456, 4567, 5678};
 char Test_Tiers[]  = {'g', 's', 'b', 'g', 's'};
 int  Test_Points[] = {0, 0, 0, 0, 0};
+int  Test_Transactions[] = {0, 0, 0, 0, 0};
 int Customer_Count = 0;
 customer_meta_t Customer[MAX_CUSTOMER];
 
@@ -159,22 +160,20 @@ void Calculate_Transaction(customer_meta_t *customer, int transaction)
   }
 
   //check customer reward status
-  if (customer->tiers == 'g')
+  switch(customer->tiers)
   {
-    customer->points += transaction * 3;
-  }
-  else if (customer->tiers == 's')
-  {
-    customer->points += transaction * 2;
-  }
-  else if (customer->tiers == 'b')
-  {
-    customer->points += transaction;
-  }
-  else
-  {
-    printf("Error customer %d tier corrupted!\n", customer->id);
-    return;
+    case 'g':
+      customer->points += transaction * 3;
+      break;
+    case 's':
+      customer->points += transaction * 2;
+      break;
+    case 'b':
+      customer->points += transaction;
+      break;
+    default:
+      printf("Error customer %d tier invalid!\n", customer->id);
+      return;
   }
   customer->transaction += transaction;
   printf("Customer %d now has %d points\n", customer->id, customer->points);
@@ -214,6 +213,7 @@ void Run_Test_Case(void)
     Customer[i].id = Test_ID[i];
     Customer[i].tiers = Test_Tiers[i];
     Customer[i].points = Test_Points[i];
+    Customer[i].transaction = Test_Transactions[i];
     Customer_Count = i;
   }
 
